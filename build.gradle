@@ -22,16 +22,40 @@ repositories {
 }
 
 dependencies {
+    // 엑셀 파일 입출력 용도
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    // 파일 입출력 용도
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation 'commons-io:commons-io:2.13.0'
+    // ORM JPA 용도
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Mongo DB 용도
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 메일 용도
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    // 보안 용도
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 유효성 검사 용도
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // 메일 템플릿 용도
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Spring Web MVC 용도
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 복잡한 쿼리 및 조회 쿼리 처리 용도
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+    // 코드 줄이기 용도
     compileOnly 'org.projectlombok:lombok'
+    // live reload 등 개발 도움 용도
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // Postgres Db 용도
     runtimeOnly 'org.postgresql:postgresql'
+    
+    // Test 용도
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
+    //testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
