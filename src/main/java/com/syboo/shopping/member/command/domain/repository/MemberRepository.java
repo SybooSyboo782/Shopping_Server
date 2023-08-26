@@ -1,7 +1,8 @@
 package com.syboo.shopping.member.command.domain.repository;
 
 import com.syboo.shopping.member.command.domain.model.Member;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * packageName  : com.syboo.shopping.member.command.domain.repository
@@ -14,6 +15,6 @@ import org.springframework.data.repository.Repository;
  * -----------------------------------------------------------
  * 2023-08-20       부시연             최초 생성
  */
-public interface MemberRepository extends Repository<Member, Long> {
-    void save(Member member);
+@Repository
+public interface MemberRepository extends JpaRepository<Member, Long> {
 }
