@@ -1,5 +1,6 @@
 package com.syboo.shopping.member.command.application.service;
 
+import com.syboo.shopping.common.CustomPattern;
 import com.syboo.shopping.member.command.application.dto.SignUpDto;
 import com.syboo.shopping.member.command.domain.model.Member;
 import com.syboo.shopping.member.command.domain.repository.MemberRepository;
@@ -31,16 +32,17 @@ public class MemberService {
     /** 회원 가입 */
     @Transactional
     public Member signup(SignUpDto signUpDto) {
-        log.info("[AuthService] Signup Start ===================================");
-        log.info("[AuthService] signUpDto {}", signUpDto);
+        log.info("[MemberService] Signup Start ===================================");
+        log.info("[MemberService] signUpDto {}", signUpDto);
 
         Member member = new Member(
-                signUpDto.getMemberId()
+                signUpDto.getMemberId(),
+                signUpDto.getPassword()
         );
 
         memberRepository.save(member);
 
-        log.info("[AuthService] Signup End ==============================");
+        log.info("[MemberService] Signup End ==============================");
 
         return member;
     }
