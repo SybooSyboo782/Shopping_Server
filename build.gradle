@@ -50,7 +50,10 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // Postgres Db 용도
     runtimeOnly 'org.postgresql:postgresql'
-    
+
+    // Gson : 자바 -> JSON, JSON -> 자바 쉽게 표현 및 변환 용도
+    implementation 'com.google.code.gson:gson:2.10.1'
+
     // Test 용도
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
