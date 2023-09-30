@@ -35,6 +35,7 @@ class MemberServiceTest {
         // given
         SignUpDto member = SignUpDto.builder()
                 .memberId("new_id")
+                .password("test1234!")
                 .build();
 
         //when
