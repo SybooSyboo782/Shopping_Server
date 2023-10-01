@@ -1,11 +1,11 @@
 package com.syboo.shopping.member.command.application.service;
 
-import com.syboo.shopping.common.CustomPattern;
 import com.syboo.shopping.member.command.application.dto.SignUpDto;
 import com.syboo.shopping.member.command.domain.model.Member;
 import com.syboo.shopping.member.command.domain.repository.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
     private static final Logger log = LoggerFactory.getLogger(MemberService.class);
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /** 회원 가입 */
@@ -37,7 +39,7 @@ public class MemberService {
 
         Member member = new Member(
                 signUpDto.getMemberId(),
-                signUpDto.getPassword()
+                passwordEncoder.encode(signUpDto.getPassword())
         );
 
         memberRepository.save(member);
