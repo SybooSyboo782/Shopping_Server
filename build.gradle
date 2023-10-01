@@ -35,7 +35,7 @@ dependencies {
     // 메일 용도
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     // 보안 용도
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     // 유효성 검사 용도
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     // 메일 템플릿 용도
@@ -50,7 +50,6 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // Postgres Db 용도
     runtimeOnly 'org.postgresql:postgresql'
-
     // Gson : 자바 -> JSON, JSON -> 자바 쉽게 표현 및 변환 용도
     implementation 'com.google.code.gson:gson:2.10.1'
 
