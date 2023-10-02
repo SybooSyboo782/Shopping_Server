@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * <pre>
  * PackageName : com.syboo.shopping.common.security
  * FileName : SecurityConfig
- * Description:
+ * Description:보안 설정
  * ================================================================
  * DATE              AUTHOR        NOTE
  * ----------------------------------------------------------------
@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  *
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
- * @see (참고할 class 또는 외부 url)
  */
 @Configuration
 public class SecurityConfig {
