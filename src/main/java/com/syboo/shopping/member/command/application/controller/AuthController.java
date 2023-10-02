@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,33 +24,35 @@ import java.net.URI;
 /**
  * <pre>
  * PackageName : com.syboo.shopping.member.command.application.controller
- * FileName : MemberController
+ * FileName : AuthController
  * Description:
  * ================================================================
  * DATE              AUTHOR        NOTE
  * ----------------------------------------------------------------
  * 2023-09-30        부시연        최초 생성
+ * 2023-10-02        부시연        api/v1대신 public url 별도 사용하여 분리
  * </pre>
  *
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
  */
 @RestController
-public class MemberController {
+@RequestMapping("/public")
+public class AuthController {
     private final CustomPattern customPattern;
-    private static final Logger log = LoggerFactory.getLogger(MemberController.class);
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     private final MemberService memberService;
-    private static final String LOG_MESSAGE = "[MemberController] signUpDto : {}";
+    private static final String LOG_MESSAGE = "[AuthController] signUpDto : {}";
 
-    public MemberController(CustomPattern customPattern, MemberService memberService) {
+    public AuthController(CustomPattern customPattern, MemberService memberService) {
         this.customPattern = customPattern;
         this.memberService = memberService;
     }
 
-    @PostMapping("public/signup")
+    @PostMapping("signup")
     public ResponseEntity<ResponseDto> signup(@Valid @RequestBody SignUpDto signUpDto) {
 
-        log.info("[MemberController] signup Start ======================");
+        log.info("[AuthController] signup Start ======================");
         log.info(LOG_MESSAGE, signUpDto);
 
 
