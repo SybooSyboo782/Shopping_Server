@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,7 +34,6 @@ import java.net.URI;
  * @version 1(클래스 버전)
  */
 @RestController
-@RequestMapping("api/v1")
 public class MemberController {
     private final CustomPattern customPattern;
     private static final Logger log = LoggerFactory.getLogger(MemberController.class);
@@ -47,7 +45,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("signup")
+    @PostMapping("public/signup")
     public ResponseEntity<ResponseDto> signup(@Valid @RequestBody SignUpDto signUpDto) {
 
         log.info("[MemberController] signup Start ======================");
