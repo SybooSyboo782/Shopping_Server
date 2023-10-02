@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * <pre>
  * PackageName : com.syboo.shopping.member.exception
- * FileName : PasswordPatternNotMatchedException
- * Description:비밀번호 패턴 불일치 예외처리
+ * FileName : 아이디 포함 시 예외처리
+ * Description:
  * ================================================================
  * DATE              AUTHOR        NOTE
  * ----------------------------------------------------------------
@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
  */
-@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "잘못된 비밀번호 요청입니다.")
-public class PasswordPatternNotMatchedException extends RuntimeException {
-    public PasswordPatternNotMatchedException() { super(); }
+@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "비밀번호에 아이디가 포함 되었습니다.")
+public class IdContainException extends RuntimeException {
+    public IdContainException() { super(); }
 
-    public PasswordPatternNotMatchedException(String message) {
+    public IdContainException(String message) {
         super(message);
     }
 
-    public PasswordPatternNotMatchedException(String message, Throwable cause) {
+    public IdContainException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PasswordPatternNotMatchedException(Throwable cause) {
+    public IdContainException(Throwable cause) {
         super(cause);
     }
 
