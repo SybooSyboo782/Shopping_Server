@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -51,16 +52,13 @@ class MemberControllerTest {
     void testSignUp() throws Exception {
 
         SignUpDto signUpDto = SignUpDto.builder()
-                .memberId("test123")
+                .memberId("new_user")
                 .password("test1234!")
                 .build();
 
-        when(customPattern.idPattern(String.valueOf(anyBoolean()))).thenReturn(true);
-        when(customPattern.passwordPattern(String.valueOf(anyBoolean()))).thenReturn(true);
-
         String json = new Gson().toJson(signUpDto); // dto 를 json 형식의 String 으로 만들기
 
-        mock.perform(post("/api/v1/signup")
+        mock.perform(post("/public/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
