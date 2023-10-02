@@ -4,6 +4,7 @@ import com.syboo.shopping.common.CustomPattern;
 import com.syboo.shopping.common.ResponseDto;
 import com.syboo.shopping.member.command.application.dto.SignUpDto;
 import com.syboo.shopping.member.command.application.service.MemberService;
+import com.syboo.shopping.member.exception.IdContainException;
 import com.syboo.shopping.member.exception.IdPatternNotMatchedException;
 import com.syboo.shopping.member.exception.PasswordPatternNotMatchedException;
 import jakarta.validation.Valid;
@@ -60,8 +61,12 @@ public class MemberController {
             throw new PasswordPatternNotMatchedException();
         }
 
+        if(customPattern.idContain(signUpDto.getMemberId(), signUpDto.getPassword())) {
+            throw new IdContainException();
+        }
+
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/login")  // Redirect to the login page
+                .fromCurrentContextPath().path("/public/login")  // Redirect to the login page
                 .build()
                 .toUri();
 

@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
  *
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
- * @see (참고할 class 또는 외부 url)
  */
 @Component
 public class CustomPattern {
@@ -36,11 +35,16 @@ public class CustomPattern {
     /** 비밀번호 패턴 값 분석 */
     public boolean passwordPattern(String password) {
 
-        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$");
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@!%*#?&])[A-Za-z\\d$@!%*#?&]{8,20}$");
 
         Matcher matcher = pattern.matcher(password);
 
         return matcher.matches();
+    }
+
+    /** 아이디 포함 여부 */
+    public boolean idContain(String memberId, String password) {
+        return password.contains(memberId);
     }
 
 }
