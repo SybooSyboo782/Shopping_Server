@@ -1,4 +1,4 @@
-package com.syboo.shopping.common.security;
+package com.syboo.shopping.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
