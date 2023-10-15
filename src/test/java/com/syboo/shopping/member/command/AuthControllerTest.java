@@ -3,6 +3,7 @@ package com.syboo.shopping.member.command;
 import com.google.gson.Gson;
 import com.syboo.shopping.common.CustomPattern;
 import com.syboo.shopping.member.command.application.controller.AuthController;
+import com.syboo.shopping.member.command.application.dto.IdRequestDto;
 import com.syboo.shopping.member.command.application.dto.SignUpDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.mockito.ArgumentMatchers.eq;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
@@ -58,6 +59,23 @@ class AuthControllerTest {
         String json = new Gson().toJson(signUpDto); // dto 를 json 형식의 String 으로 만들기
 
         mock.perform(post("/public/signup")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @DisplayName("아이디 중복 확인(회원가입)용 컨트롤러 동작 확인 테스트 ")
+    void testIdCheck() throws Exception {
+
+        IdRequestDto idRequestDto = IdRequestDto.builder()
+                .memberId("new_user")
+                .build();
+
+        String json = new Gson().toJson(idRequestDto); // dto 를 json 형식의 String 으로 만들기
+
+        mock.perform(get("/public/id")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
