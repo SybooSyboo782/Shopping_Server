@@ -40,8 +40,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/api/v1/**")).hasAnyRole("USER", "ADMIN").anyRequest().authenticated()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/api/admin")).hasRole("ADMIN").anyRequest().authenticated())
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/v1/**")).hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/admin")).hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 /* CSRF 설정 Disable */
                 .csrf(CsrfConfigurer::disable)
