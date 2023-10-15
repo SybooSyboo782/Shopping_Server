@@ -1,5 +1,6 @@
 package com.syboo.shopping.member.command.application.service;
 
+import com.syboo.shopping.member.command.application.dto.IdRequestDto;
 import com.syboo.shopping.member.command.application.dto.SignUpDto;
 import com.syboo.shopping.member.command.domain.model.Member;
 import com.syboo.shopping.member.command.domain.repository.MemberRepository;
@@ -47,5 +48,23 @@ public class MemberService {
         log.info("[MemberService] Signup End ==============================");
 
         return member;
+    }
+
+    /** 아이디 중복검사 */
+    public String idCheck(IdRequestDto idRRequestDto) {
+
+        log.info("[AuthQueryService] idCheck Start =================");
+        log.info("[AuthQueryService] newMemberId {}", idRRequestDto.getMemberId());
+
+        String idCheck = "";
+
+        if(!memberRepository.existsByMemberId(idRRequestDto.getMemberId())) {
+            idCheck = "중복된 아이디가 없습니다";
+        } else {
+            idCheck = "중복된 아이디가 존재합니다";
+        }
+
+        return idCheck;
+
     }
 }
