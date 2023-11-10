@@ -37,8 +37,18 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    open-in-view: false
 mybatis:
   mapper-locations: mybatis/**/*.xml
   type-aliases-package: com.syboo.shopping
   configuration:
     map-underscore-to-camel-case: true
+logging:
+  # 로그 레벨 설정
+  level:
+    root: info
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
