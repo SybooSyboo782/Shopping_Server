@@ -1,5 +1,7 @@
 package com.syboo.shopping.common;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -15,8 +17,9 @@ import org.springframework.http.HttpStatus;
  *
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
- * @see (참고할 class 또는 외부 url)
  */
+@Getter
+@Setter
 public class ResponseDto {
 
     private int status;
@@ -26,30 +29,6 @@ public class ResponseDto {
     public ResponseDto(HttpStatus status, String message, Object data){
         this.status = status.value();
         this.message = message;
-        this.data = data;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
         this.data = data;
     }
 
