@@ -1,5 +1,6 @@
-package com.syboo.shopping.common;
+package com.syboo.shopping.common.encrypt;
 
+import com.syboo.shopping.common.SybooRuntimeException;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.*;
@@ -27,7 +28,7 @@ import java.util.Base64;
  * @version 1(클래스 버전)
  */
 @Service
-public class AesEncryptionService {
+public class AesEncryptionService implements EncryptionInterface {
 
     private static final String ALGORITHM = "AES";
     private static final String TRANSFORMATION = "AES/GCM/NoPadding";
@@ -35,7 +36,8 @@ public class AesEncryptionService {
 
     private static final String aes256SecretKey = "ThisIsASecretKey1234567890123456";
 
-    public static String aesEncrypt(String plaintext) {
+    @Override
+    public String aesEncrypt(String plaintext) {
         SecureRandom secureRandom = new SecureRandom();
         byte[] iv = new byte[12]; // GCM 모드에서는 IV(Initialization Vector)의 길이가 12바이트로 고정
         secureRandom.nextBytes(iv);
@@ -58,7 +60,8 @@ public class AesEncryptionService {
         }
     }
 
-    public static String aesDecrypt(String encryptedText) {
+    @Override
+    public String aesDecrypt(String encryptedText) {
         byte[] ivAndCiphertext = Base64.getDecoder().decode(encryptedText);
 
         // IV는 처음 12바이트
