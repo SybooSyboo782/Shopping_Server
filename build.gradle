@@ -1,8 +1,9 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.1'
-    id 'io.spring.dependency-management' version '1.1.2'
+    id 'org.springframework.boot' version '3.3.0'
+    id 'org.cyclonedx.bom' version '1.8.2'
 }
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.syboo'
 version = '0.0.1-SNAPSHOT'
@@ -24,10 +25,10 @@ repositories {
 dependencies {
     // 엑셀 파일 입출력 용도
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
-    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.5'
     // 파일 입출력 용도
     // https://mvnrepository.com/artifact/commons-io/commons-io
-    implementation 'commons-io:commons-io:2.13.0'
+    implementation 'commons-io:commons-io:2.16.1'
     // ORM JPA 용도
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // Mongo DB 용도
@@ -43,7 +44,7 @@ dependencies {
     // Spring Web MVC 용도
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // 복잡한 쿼리 및 조회 쿼리 처리 용도
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     // 코드 줄이기 용도
     compileOnly 'org.projectlombok:lombok'
     // live reload 등 개발 도움 용도
@@ -51,12 +52,12 @@ dependencies {
     // Postgres Db 용도
     runtimeOnly 'org.postgresql:postgresql'
     // Gson : 자바 -> JSON, JSON -> 자바 쉽게 표현 및 변환 용도
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
 
     // Test 용도
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
     //testImplementation 'org.springframework.security:spring-security-test'
 }
 
