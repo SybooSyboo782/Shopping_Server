@@ -26,6 +26,8 @@ dependencies {
     // 엑셀 파일 입출력 용도
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     implementation 'org.apache.poi:poi-ooxml:5.2.5'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-compress
+    implementation 'org.apache.commons:commons-compress:1.26.2'
     // 파일 입출력 용도
     // https://mvnrepository.com/artifact/commons-io/commons-io
     implementation 'commons-io:commons-io:2.16.1'
@@ -59,6 +61,31 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
     //testImplementation 'org.springframework.security:spring-security-test'
+}
+
+cyclonedxBom {
+    // includeConfigs is the list of configuration names to include when generating the BOM (leave empty to include every configuration), regex is supported
+    includeConfigs = ["runtimeClasspath"]
+    // skipConfigs is a list of configuration names to exclude when generating the BOM, regex is supported
+    skipConfigs = ["compileClasspath", "testCompileClasspath"]
+    // skipProjects is a list of project names to exclude when generating the BOM
+    skipProjects = [rootProject.name, "yourTestSubProject"]
+    // Specified the type of project being built. Defaults to 'library'
+    projectType = "application"
+    // Specified the version of the CycloneDX specification to use. Defaults to '1.5'
+    schemaVersion = "1.5"
+    // Boms destination directory. Defaults to 'build/reports'
+    destination = file("build/reports")
+    // The file name for the generated BOMs (before the file format suffix). Defaults to 'bom'
+    outputName = "bom"
+    // The file format generated, can be xml, json or all for generating both. Defaults to 'all'
+    outputFormat = "xml"
+    // Exclude BOM Serial Number. Defaults to 'true'
+    includeBomSerialNumber = false
+    // Exclude License Text. Defaults to 'true'
+    includeLicenseText = false
+    // Override component version. Defaults to the project version
+    componentVersion = "2.0.0"
 }
 
 tasks.named('test') {
